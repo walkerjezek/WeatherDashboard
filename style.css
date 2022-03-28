@@ -1,0 +1,46 @@
+
+.header {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    background-color: blue;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    max-height: 125px;
+}
+
+.searchBtn {
+    border-radius: 5px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    grid-template-rows: 2, 1fr;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.searchArea {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    height: 300px;
+}
+
+.overviewCard {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    border: 1px solid black;
+}
+
+.forecast {
+    grid-column: 2/3;
+    grid-row: 2/2;
+    height: 200px;
+}
+
+.forecastCards {
+
+}
