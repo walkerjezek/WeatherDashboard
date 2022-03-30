@@ -71,9 +71,14 @@
     min-width: 15%;
     background-color: rgb(46, 46, 138);
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 2px;
     color: white;
     padding: 5px;
+    list-style-type: none;
+}
+
+.cardItems {
+    margin-left: -40px;
 }
 
 .hidden {
