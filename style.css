@@ -18,23 +18,24 @@
     display: grid;
     grid-template-columns: .5fr 2fr;
     gap: 10px;
-    grid-template-rows: 2, 1fr;
     margin-right: 20px;
     margin-top: 20px;
 }
 
 .searchArea {
-    grid-column: 1;
+    grid-column: 1/-1;
     grid-row: 1/2;
-    height: 300px;
+    height: 250px;
     margin-left: 20px;
 }
 
 .overviewCard {
+    /* display: flex; */
     grid-column: 2/3;
     grid-row: 1/2;
     border: 1px solid black;
     padding: 10px;
+    max-width: 950px;
 }
 
 .forecastHeader {
@@ -47,25 +48,34 @@
     grid-column: 2/3;
     grid-row: 2/2;
     height: auto;
+    max-width: 950px;
+}
+
+.searchBox {
+    width: 200px;
 }
 
 .cards {
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 100%;
+    width: 950px;
 }
 
 .forecastCard {
-    display: inline-flex;
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 10px;
+    margin: 5px;
     height: 225px;
-    width: 200px;
-    background-color: blue;
+    min-width: 15%;
+    background-color: rgb(46, 46, 138);
     border: 1px solid black;
     border-radius: 5px;
     color: white;
     padding: 5px;
+}
+
+.hidden {
+    display: none;
 }

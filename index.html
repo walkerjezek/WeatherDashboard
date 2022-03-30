@@ -20,13 +20,13 @@
     <div class="layout">
         <div class="searchArea">
             <h2>Search for a City:</h2>
-                <input id="cityInput" type="text" placeholder="City Name...">
-                <button class="searchBtn">Search</button>
+                <input id="cityInput" type="text" class="form-control searchBox" placeholder="City Name...">
+                <button id="searchBtn" class="searchBtn">Search</button>
             <form id="history"></form>
         </div>
 
         <div class="overviewCard">
-            <h3 class="cityOverview" id="cityOverview-name">Austin</h3>
+            <h3 class="cityOverview" id="cityOverview-name">City Name</h3>
                 <div class="stats">
                     <p id="temp">Temperature: </p>
                     <p id="humidity">Humidity: </p>
@@ -40,7 +40,7 @@
             <div class="forecastHeader">
                 <h3>5-Day Forecast:</h3>
             </div>
-            <div class="cards">
+            <div class="cards hidden" id="cards">
                 <div id="card1" class="forecastCard">forecast here</div>
                 <div id="card2" class="forecastCard">forecast here</div>
                 <div id="card3" class="forecastCard">forecast here</div>
