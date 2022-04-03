@@ -3,7 +3,7 @@
     display: flex;
     margin: 0px;
     padding: 0px;
-    background-color: blue;
+    background: linear-gradient(90deg, blue, green);
     color: white;
     align-items: center;
     justify-content: center;
@@ -11,6 +11,10 @@
 }
 
 .searchBtn {
+    border-radius: 5px;
+}
+
+.clearBtn {
     border-radius: 5px;
 }
 
@@ -69,7 +73,8 @@
     margin: 5px;
     height: 225px;
     min-width: 15%;
-    background-color: rgb(46, 46, 138);
+    /* background-color: rgb(46, 46, 138); */
+    background: linear-gradient(180deg, blue, rgb(0, 70, 0));
     border: 1px solid black;
     border-radius: 2px;
     color: white;
@@ -83,4 +88,9 @@
 
 .hidden {
     display: none;
+}
+
+#history li {
+    list-style-type: none;
+    margin-top: 10px;
 }

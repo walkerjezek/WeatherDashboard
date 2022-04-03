@@ -12,11 +12,14 @@ var card2El = document.getElementById("card2");
 var card3El = document.getElementById("card3");
 var card4El = document.getElementById("card4");
 var card5El = document.getElementById("card5");
+var clearBtn = document.getElementById("clearBtn");
+var historyEl = document.getElementById("history");
+var searchHistory = [];
 
 // My unique API key
 const apiKey = "c3fd335f55cb288111b415f376efcfdf";
 
-// Todays Data
+// Todays Date
 var today = moment().format("M/D/YYYY");
 
 // Next five days. Inefficient I know...
@@ -28,10 +31,10 @@ var today5 = moment().add(5, 'days').format("M/D/YYYY");
 
 
 // Current weather
-// Ref: 06-01-21
 // ----------------------------------------------------------------------------------------------
 
 function currentWeather(cityName) {
+    console.log(cityName);
     let currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     fetch(currentWeatherURL).then (function (response){
 
@@ -39,6 +42,7 @@ function currentWeather(cityName) {
             response.json().then(function (data) {
                 // displayCurrentWeather(data);
                 console.log(data);
+                // renderHistory();
                 const lat = data.coord.lat;
                 const lon = data.coord.lon;
                 currentCity.innerHTML = cityName + " - " + "(" + today + ") - " + data.weather[0].description;
@@ -57,7 +61,7 @@ function currentWeather(cityName) {
                                 // UV Index for overview card
                                 currentUV.innerHTML = "UV Index: " + data.daily[0].uvi;
 
-                                // Foor loop to simplify this?
+                                // For loop to simplify this?
                                 // --------------------------------------------
                                 // Forecast Card 1
                                 var card1DateEl = document.getElementById("card1Date");
@@ -149,6 +153,24 @@ function currentWeather(cityName) {
                                 card5HumidEl.innerHTML = "Humidity: " + data.daily[5].humidity + "%";
 
 
+                                // for ( i = 1; 1 < 6; 1++){
+                                //     var card5DateEl = document.getElementById("card5Date");
+                                //     card5DateEl.innerHTML = "(" + today5 + ")";
+                                //     // Display Date
+                                //     var card5DescEl = document.getElementById("card5Desc");
+                                //     card5DescEl.innerHTML = data.daily[5].weather[0].description;
+                                //     // Display Icon?
+                                //     // Display Temp
+                                //     var card5TempEl = document.getElementById("card5Temp");
+                                //     card5TempEl.innerHTML = "Temp: " + convert(data.daily[5].temp.day) + " &#176F";
+                                //     // Display Wind
+                                //     var card5WindEl = document.getElementById("card5Wind");
+                                //     card5WindEl.innerHTML = "Wind: " + data.daily[5].wind_speed + " MPH";
+                                //     // Display Humidty
+                                //     var card5HumidEl = document.getElementById("card5Humid");
+                                //     card5HumidEl.innerHTML = "Humidity: " + data.daily[5].humidity + "%";
+                                //     }
+
                             })
                         })
                 
@@ -164,9 +186,29 @@ function currentWeather(cityName) {
     })
 }
 
-
+// Ref: 06-01-21
+// Ref: 04-01-26 (Line 42-61?)
 // Search History
-
+function renderHistory() {
+    historyEl.innerHTML = "";
+    
+    for (var i = 0; i < searchHistory.length; i++) {
+      var historyCity = searchHistory[i];
+  
+      var li = document.createElement("li");
+      li.setAttribute("data-index", i);
+  
+      var button = document.createElement("button");
+      button.textContent = historyCity;
+      button.addEventListener('click', function() {
+        cityEl.textContent = historyCity;
+        currentWeather(historyCity)
+    });
+  
+      li.appendChild(button);
+      historyEl.appendChild(li);
+    }
+  }
 
 // Convert temp from K to F. Had to look this one up
 function convert(K) {
@@ -177,6 +219,14 @@ function convert(K) {
 searchEl.addEventListener("click", function() {
     const cityName = cityEl.value;
     currentWeather(cityName);
+    searchHistory.push(cityName);
+    renderHistory();
     cardsEl.classList.remove("hidden");
+    clearBtn.classList.remove("hidden");
     localStorage.setItem("history", JSON.stringify(cityName));
+})
+
+clearBtn.addEventListener("click", function(){
+    localStorage.clear();
+    window.location.reload();
 })
